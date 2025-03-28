@@ -45,21 +45,23 @@ python -m backend.testes.testar_ia_com_dados
 "Quantas notas fiscais foram emitidas este mês?"
 
 7.Estrutura do projeto (tree):
-backend/
-├── core/
-│   └── corretor.py            # Aplica correções e refinamentos em instruções SQL geradas
-│
-├── llms/
-│   └── orquestrador.py        # Gerencia a escolha e consulta de modelos LLM da Together.ai
-│
-├── testes/
-│   └── testar_fdb.py          # Testa a conexão com o banco Firebird e executa uma query simples
-│   └── testar_modelo_llama3.py  # Executa e imprime respostas dos modelos LLM configurados via Together
-│
-├── utils/
-│   └── conexao_firebird.py    # Realiza a conexão ao banco Firebird usando variáveis de ambiente
-│   └── prompts.py              # Armazena e organiza prompts utilizados nas requisições aos modelos
-|
-.env                                # Armazena chaves de API e credenciais sensíveis do banco Firebird
-|
-venv/ #repositório criado automáticamente com a criação do ambiente virtual
+
+```bash
+  backend/
+  ├── core/
+  │   └── corretor.py            # Aplica correções e refinamentos em instruções SQL geradas
+  │
+  ├── llms/
+  │   └── orquestrador.py        # Gerencia a escolha e consulta de modelos LLM da Together.ai
+  │
+  ├── testes/
+  │   └── testar_fdb.py          # Testa a conexão com o banco Firebird e executa uma query simples
+  │   └── testar_modelo_llama3.py  # Executa e imprime respostas dos modelos LLM configurados via Together
+  │
+  ├── utils/
+  │   └── conexao_firebird.py    # Realiza a conexão ao banco Firebird usando variáveis de ambiente
+  │   └── prompts.py              # Armazena e organiza prompts utilizados nas requisições aos modelos
+  |
+  .env                                # Armazena chaves de API e credenciais sensíveis do banco Firebird
+  |
+  venv/ #repositório criado automáticamente com a criação do ambiente virtual
