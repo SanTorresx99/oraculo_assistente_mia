@@ -19,30 +19,37 @@ Sistema inteligente que utiliza LLMs da plataforma [Together.ai](https://www.tog
    cd oraculo_assistente_mia
 
 2. Crie e ative o amiente virtual:
+   ```bash
    python3 -m venv venv
    source venv/Scripts/activate
 
 3. Instale as dependencias:
-pip install -r requirements.txt
+  ```bash
+  pip install -r requirements.txt
 
 4.Crie o arquivo .env no projeto raiz com suas variáveis:
-#Conexões com modelos IA via together.ai:
-TOGETHER_API_KEY=sua_chave_aqui
-TOGETHER_MODELS=mistralai/Mistral-7B-Instruct-v0.2,meta-llama/Llama-3-8b-chat-hf,...
-#Conexão com seu database, no caso Firebird:
-FIREBIRD_DSN=localhost
-FIREBIRD_USER=usuario
-FIREBIRD_PASSWORD=senha
+  ```bash
+  #Conexões com modelos IA via together.ai:
+  TOGETHER_API_KEY=sua_chave_aqui
+  TOGETHER_MODELS=mistralai/Mistral-7B-Instruct-v0.2,meta-llama/Llama-3-8b-chat-hf,...
+  #Conexão com seu database, no caso Firebird:
+  FIREBIRD_DSN=localhost
+  FIREBIRD_USER=usuario
+  FIREBIRD_PASSWORD=senha
 
 5.Execuções:
-#Para executar o teste das LLMs:
-python -m backend.testes.testar_modelo_llama3
-#Para executar SQL com base em perguntas em linguagem natural:
-python -m backend.testes.testar_ia_com_dados
+
+  #Para executar o teste das LLMs:
+  ```bash
+  python -m backend.testes.testar_modelo_llama3
+
+  #Para executar SQL com base em perguntas em linguagem natural:
+  ```bash
+  python -m backend.testes.testar_ia_com_dados
 
 6. Exemplos de uso:
-"Qual foi a última venda do cliente João?"
-"Quantas notas fiscais foram emitidas este mês?"
+  "Qual foi a última venda do cliente João?"
+  "Quantas notas fiscais foram emitidas este mês?"
 
 7.Estrutura do projeto (tree):
 
