@@ -14,45 +14,42 @@ Sistema inteligente que utiliza LLMs da plataforma [Together.ai](https://www.tog
 ## 📦 Instalação
 
 1. Clone o repositório:
-   ```bash
+  ```bash
    git clone https://github.com/SanTorresx99/oraculo_assistente_mia.git
    cd oraculo_assistente_mia
 
 2. Crie e ative o amiente virtual:
-   ```bash
+  ```bash
    python3 -m venv venv
    source venv/Scripts/activate
 
 3. Instale as dependencias:
-    ```bash
+  ```bash
     pip install -r requirements.txt
 
 4.Crie o arquivo .env no projeto raiz com suas variáveis:
 
   #Conexões com modelos IA via together.ai:
-    ```bash
+  ```bash
     TOGETHER_API_KEY=sua_chave_aqui
     TOGETHER_MODELS=mistralai/Mistral-7B-Instruct-v0.2,meta-llama/Llama-3-8b-chat-hf,...
 
-  #Conexão com seu database, no caso Firebird:
-    ```bash
+#Conexão com seu database, no caso Firebird:
+  ```bash
     FIREBIRD_DSN=localhost
     FIREBIRD_USER=usuario
     FIREBIRD_PASSWORD=senha
-#Caso tenha outras conexões com databases altere nessa parte (.env)
-
+  #Caso tenha outras conexões com databases altere nessa parte (.env)
 
   #Para executar o teste das LLMs:
-    ```bash
     python -m backend.testes.testar_modelo_llama3
 
   #Para executar SQL com base em perguntas em linguagem natural:
-    ```bash
     python -m backend.testes.testar_ia_com_dados
 
 6. Exemplos de uso:
-  "Qual foi a última venda do cliente João?"
-  "Quantas notas fiscais foram emitidas este mês?"
+"Qual foi a última venda do cliente João?"
+"Quantas notas fiscais foram emitidas este mês?"
 
 7.Estrutura do projeto (tree):
 
