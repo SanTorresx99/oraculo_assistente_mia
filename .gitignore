@@ -1,0 +1,48 @@
+# Ambiente virtual
+venv/
+
+# Arquivos de ambiente
+.env
+
+# __pycache__ e arquivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+
+# Arquivos de configuração de IDE (VSCode, etc.)
+.vscode/
+.idea/
+
+# Arquivos de build / distribuição
+build/
+dist/
+*.egg-info/
+
+# Docker
+*.pid
+*.tar
+docker-compose.override.yml
+
+# Test coverage / pytest
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# Arquivos temporários do sistema operacional
+.DS_Store
+Thumbs.db
