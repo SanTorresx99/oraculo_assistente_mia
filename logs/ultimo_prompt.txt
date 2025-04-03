@@ -1,5 +1,4 @@
-def montar_prompt(pergunta: str) -> str:
-    return f"""
+
 Você é um assistente especializado em análise de vendas.
 
 📌 Instruções:
@@ -52,7 +51,6 @@ p_rep.nome AS representante  -- ✅ Agrupamento por vendedor
 np.data_emissao >= '2020-01-01' AND (e.nome LIKE '%ACABADO%' OR e.nome = 'MERCADORIA P/ REVENDA')
 
 📌 Pergunta do usuário:
-{pergunta}
+Quais os produtos mais vendidos por representante em 2024?
 
 Retorne apenas a SQL final, sem comentários, sem explicações, apenas a query.
-"""

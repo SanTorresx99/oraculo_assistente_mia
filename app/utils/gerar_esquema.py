@@ -8,10 +8,11 @@ def obter_esquema_com_descricao() -> str:
 
     # ✅ CORRETO (compatível com firebird-driver atual)
     conn = connect(
-        dsn=FIREBIRD_DSN,
-        user=FIREBIRD_USER,
-        password=FIREBIRD_PASSWORD
-    )
+    database=FIREBIRD_DSN.replace("\\", "/"),
+    user=FIREBIRD_USER,
+    password=FIREBIRD_PASSWORD
+)
+
 
     cur = conn.cursor()
 

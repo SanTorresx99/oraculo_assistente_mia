@@ -2,7 +2,10 @@ from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel
 from app.llm import gerar_resposta, gerar_sql
 from app.utils.executar_fdb import executar_sql
+from app.oraculos.vendas import montar_prompt
 import pandas as pd
+import unicodedata
+import re
 
 app = FastAPI(
     title="Oráculo Assistente MIA",
@@ -42,17 +45,33 @@ def perguntar(payload: PerguntaRequest):
 # 🚀 Novo endpoint: executa a SQL no Firebird e retorna os dados
 @app.post("/executar-sql")
 def executar_sql_endpoint(payload: PerguntaRequest):
-    print("✅ Endpoint /executar-sql registrado.")  # Debug
+    print("✅ Recebida requisição no endpoint /executar-sql")
     try:
-        sql = gerar_sql(payload.pergunta)
-        df: pd.DataFrame = executar_sql(sql)
+        print("[DEBUG] Enviando prompt para", payload.via.upper())
+
+        prompt = montar_prompt(payload.pergunta)
+        prompt_ascii = unicodedata.normalize('NFKD', prompt).encode('ascii', 'ignore').decode('ascii')
+        prompt_ascii = re.sub(r'[^\x00-\x7F]+', '', prompt_ascii)
+        print("[DEBUG] Prompt utilizado para gerar SQL:\n", prompt_ascii)
+
+        sql_raw = gerar_sql(prompt_ascii)
+        sql_ascii = unicodedata.normalize('NFKD', sql_raw).encode('ascii', 'ignore').decode('ascii')
+        sql_ascii = re.sub(r'[^\x00-\x7F]+', '', sql_ascii)
+        print("[DEBUG] SQL gerada:\n", sql_ascii)
+
+        df: pd.DataFrame = executar_sql(sql_ascii)
+        print("[DEBUG] DataFrame com", len(df), "linhas.")
 
         return {
-            "sql_gerado": sql,
+            "sql_gerado": sql_ascii,
             "linhas": len(df),
             "dados": df.to_dict(orient="records")
         }
     except Exception as e:
+        try:
+            print("[ERRO] Falha ao executar SQL:", str(e).encode("ascii", errors="ignore").decode())
+        except:
+            print("[ERRO] Falha ao executar SQL: erro ao tratar string de erro")
         raise HTTPException(status_code=500, detail=f"Erro ao executar SQL: {str(e)}")
 
-print("✅ main.py carregado até o fim.")  # Debug global
+print("✅ main.py carregado até o fim.")
